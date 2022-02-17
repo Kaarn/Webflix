@@ -12,6 +12,8 @@
         <li><a href="/hello">Hello</a></li>
         <li><a href="/goodbye">Goodbye</a></li>
         <li><a href="/about">A Propos</a></li>
+        <li><a href="/exercice/categories">Catégories</a></li>
+        <li><a href="/exercice/films">Films</a></li>
     </ul>
 
     @yield('content')
