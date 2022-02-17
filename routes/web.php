@@ -35,6 +35,28 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/about/{user}', [AboutController::class, 'show']);
 
 
+//Affiche le formulaire
+Route::get('/categories/creer', function () {
+    return view('categories.create');
+});
+
+//Traite le formulaire
+Route::post('/categories/creer', function () {
+    //Vérifier les erreurs
+    request()->validate([
+        'name' => 'required|min:3|max:10',
+        'email' => 'required|email',
+    ]);
+
+
+    dump(request('name'));
+    return 'OK';
+});
+
+
+
+//EXOS
+
 //CATEGORY
 Route::get('/exercice/categories', function () {
     return view('exercice.categories', [
