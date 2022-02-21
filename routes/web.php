@@ -36,63 +36,14 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/about/{user}', [AboutController::class, 'show']);
 
 
-
+// CATEGORY
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/create', [CategoryController::class, 'create']);
+Route::post('/categories/create', [CategoryController::class, 'store']);
 
 
 
-//FORM
-
-//Affiche le formulaire
-Route::get('/categories/creer', function () {
-    return view('categories.create');
-});
-
-//Traite le formulaire
-Route::post('/categories/creer', function () {
-    //Vérifier les erreurs
-    request()->validate([
-        'name' => 'required|min:3|max:10',
-        'email' => 'required|email',
-    ]);
-
-
-    dump(request('name'));
-    return 'OK';
-});
-
-
-
-
-
-
-
-
-
-
-//EXOS
-
-//CATEGORY
-Route::get('/exercice/categories', function () {
-    return view('exercice.categories', [
-        'categories' => Category::all()
-    ]);
-});
-
-Route::get('/exercice/categories/creer', function () {
-    $category = Category::create([
-        'name' => 'test'
-    ]);
-
-    return redirect('/exercice/categories');
-});
-
-Route::get('/exercice/categories/{id}', function ($id) {
-    return Category::find($id);
-});
-
-
-//MOVIES
+// MOVIES
 Route::get('/exercice/films', function () {
     return view('exercice.movies', [
         'movies' => Movie::all()
