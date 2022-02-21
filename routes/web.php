@@ -40,6 +40,7 @@ Route::get('/about/{user}', [AboutController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/create', [CategoryController::class, 'create']);
 Route::post('/categories/create', [CategoryController::class, 'store']);
+Route::get('/categories/{category}', [CategoryController::class, 'show']);
 
 
 
