@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HelloController;
 use App\Models\Category;
 use App\Models\Movie;
@@ -35,6 +36,13 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/about/{user}', [AboutController::class, 'show']);
 
 
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+
+
+//FORM
+
 //Affiche le formulaire
 Route::get('/categories/creer', function () {
     return view('categories.create');
@@ -52,6 +60,13 @@ Route::post('/categories/creer', function () {
     dump(request('name'));
     return 'OK';
 });
+
+
+
+
+
+
+
 
 
 
