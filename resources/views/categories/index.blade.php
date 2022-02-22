@@ -10,6 +10,7 @@
                         <p>{{ $category->name }}</p>
 
                         <a class="btn btn-primary" href="/categories/{{ $category->id }}">Voir</a>
+                        <a class="btn btn-secondary" href="/categories/{{ $category->id }}/edit">Modifier</a>
 
                     </div>
                 </div>

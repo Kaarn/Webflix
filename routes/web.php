@@ -41,8 +41,9 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/create', [CategoryController::class, 'create']);
 Route::post('/categories/create', [CategoryController::class, 'store']);
 Route::get('/categories/{category}', [CategoryController::class, 'show']);
-
-
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit']);
+Route::put('/categories/{category}', [CategoryController::class, 'update']);
+//put = comme POST mais à la place de créer, met à jour/remplace/update.
 
 // MOVIES
 Route::get('/exercice/films', function () {

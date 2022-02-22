@@ -12,12 +12,12 @@
     </div>
 @endif
 
-    <h1>Créer une Catégorie</h1>
-    <form action="" method="post">
-        @csrf
-        <input class="form-control" type="text" name="name" placeholder="Fantastique..." value="{{ old('name') }}">
+    <h1>Modifier la Catégorie {{ $category->name }}</h1>
+    <form action="/categories/{{ $category->id }}" method="post">
+        @csrf @method('put')
+        <input class="form-control" type="text" name="name" placeholder="Fantastique..." value="{{ old('name', $category->name) }}">
        <!-- <input type="text" name="email" placeholder="doubidou@gmail.com...">-->
 
-        <button class="btn btn-primary mt-3">Ajouter</button>
+        <button class="btn btn-primary mt-3">Modifier</button>
     </form>
 @endsection

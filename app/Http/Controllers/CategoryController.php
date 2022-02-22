@@ -72,9 +72,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(category $category)
     {
-        //
+        return view('categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -84,9 +86,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        //Vérifier les erreurs
+        request()->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        //On modifie la catégorie dans la BDD
+        $category->update([
+            'name' => request('name'),
+        ]);
+
+        return redirect('/categories')->with('status', 'La catégorie '.$category->name.' a bien été modifiée.');
     }
 
     /**
