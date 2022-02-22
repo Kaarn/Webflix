@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\MoviesController;
 use App\Models\Category;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Route;
@@ -44,13 +45,17 @@ Route::get('/categories/{category}', [CategoryController::class, 'show']);
 Route::get('/categories/{category}/edit', [CategoryController::class, 'edit']);
 Route::put('/categories/{category}', [CategoryController::class, 'update']);
 //put = comme POST mais à la place de créer, met à jour/remplace/update.
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+
 
 // MOVIES
-Route::get('/exercice/films', function () {
-    return view('exercice.movies', [
-        'movies' => Movie::all()
-    ]);
-});
+Route::get('/movies', [MoviesController::class, 'index']);
+Route::get('/movies/{movie}', [MoviesController::class, 'show']);
+
+
+// ACTORS
+Route::get('/actors', [ActorsController::class, 'index']);
+Route::get('/actors/{actor}', [ActorsController::class, 'show']);
 
 Route::get('/exercice/films/creer', function () {
     Movie::create([

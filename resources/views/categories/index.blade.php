@@ -12,6 +12,11 @@
                         <a class="btn btn-primary" href="/categories/{{ $category->id }}">Voir</a>
                         <a class="btn btn-secondary" href="/categories/{{ $category->id }}/edit">Modifier</a>
 
+                        <form class="d-inline" action="/categories/{{ $category->id }}" method="post">
+                            @csrf @method('delete')
+                            <button class="btn btn-danger" onclick="return confirm('Voulez vous supprimer la Catégorie ?')">Supprimer</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
