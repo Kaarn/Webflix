@@ -1,14 +1,25 @@
 @extends('layouts.base')
     @section('content')
-    <div class="d-flex justify-content-between">
-        <div class="d-flex flex-column">
-            <h2>{{ $movie->title }}</h2>
-            <img width="350px" src="{{ $movie->cover }}" alt="">
-            <p class="fw-bold">{{ $movie->released_at->format('Y-m-d') }}</p>
-            <p class="fw-bold">Durée : {{ $movie->duration }}</p>
+    <div class="row">
+        <div class="col-lg-5">
+            <img src="{{ $movie->cover }}" class="img-fluid" alt="{{ $movie->title }}">
         </div>
-        <div>
-            <p class="col-6 m-auto p-5 text-left">{{ $movie->synopsis }}</p>
+        <div class="col-lg-7">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1>{{ $movie->title }}</h1>
+                    <p>{{ $movie->released_at->translatedFormat('d F Y') }} | {{ $movie->category?->name }} | {{ $movie->formatDuration() }}</p>
+                    <div class="mb-4">
+                        {{ $movie->synopsis }}
+                    </div>
+
+                    @if ($movie->youtube)
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/{{ $movie->youtube }}?rel=0" title="{{ $movie->title}}" allowfullscreen></iframe>
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     @endsection

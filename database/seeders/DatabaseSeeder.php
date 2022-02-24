@@ -25,19 +25,28 @@ class DatabaseSeeder extends Seeder
         $genres = $response->json()['genres'];
 
         foreach ($genres as $genre) {
-            Category::factory()->create(['name' => $genre['name']]);
+            Category::factory()->create([
+                'id' => $genre['id'],
+                'name' => $genre['name']
+            ]);
         }
 
         //MOVIES
-        $response = Http::get('https://api.themoviedb.org/3/movie/popular?api_key=72148c61e7729499f1b6d7ac4508fd86&language=fr');
+
+        $response = Http::get('https://api.themoviedb.org/3/movie/popular?api_key=72148c61e7729499f1b6d7ac4508fd86&language=fr&page=3');
         $movies = $response->json()['results'];
 
         foreach ($movies as $movie) {
+            
+            $movieSupp = Http::get('https://api.themoviedb.org/3/movie/'.$movie['id'].'?api_key=ebc0a4ad59da5f80113ec7d1142c72a7&language=fr-FR&append_to_response=credits,videos')->json();
+
             Movie::factory()->create([
                 'title' => $movie['original_title'],
                 'synopsis' => $movie['overview'],
+                'youtube' => $movieSupp['videos']['results'][0]['key'] ?? null,
                 'cover' => 'https://image.tmdb.org/t/p/w500'.$movie['poster_path'],
                 'released_at' => $movie['release_date'],
+                'category_id' => $movie['genre_ids'][0],
             ]);
         }
     }

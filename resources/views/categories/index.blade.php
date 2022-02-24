@@ -7,7 +7,7 @@
             <div class="col-lg-3">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <p>{{ $category->name }}</p>
+                        <p>{{ $category->name }} ({{ $category->movies->count() }} films)</p>
 
                         <a class="btn btn-primary" href="/categories/{{ $category->id }}">Voir</a>
                         <a class="btn btn-secondary" href="/categories/{{ $category->id }}/edit">Modifier</a>
